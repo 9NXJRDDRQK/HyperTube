@@ -1,3 +1,8 @@
+import numpy as np
+import random
+import copy
+import time
+
 def HP_search_rand(data, HP, HPcv, HHP, d_HP = None, parameters = None):
 
     val_cost_min = 1000
@@ -52,16 +57,8 @@ def HP_search_rand(data, HP, HPcv, HHP, d_HP = None, parameters = None):
 
             hp_rand = HP_random[str(hp)]
             HP[str(hp)] = hp_rand[i]
-
             print_dict[str(hp)] = HP[str(hp)]
         
-        # print(print_dict)
-        
-        # print("HP", HP)
-        # print("len(data)", len(data))
-        
-        # print("model(data, HP)", len(model(data, HP, model_in = None)))
-
         eva_val, eva_test, model = model_main_cnn(data = data, hparameters = HP, model_in = None)
             
         try:
@@ -92,15 +89,5 @@ def HP_search_rand(data, HP, HPcv, HHP, d_HP = None, parameters = None):
             cost_min_list.append(val_cost_min)
         else:
             continue
-
-    """
-    d_HP={}
-
-    for hp in HPcv.keys():
-
-        bhp = best_HP[str(hp)]
-        dab = abs(best_HP[str(hp)] - best_HP1[str(hp)])
-        d_HP[str(hp)] = [bhp, dab]
-    """
 
     return eva_val_list, eva_test_list
