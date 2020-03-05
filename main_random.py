@@ -1,7 +1,7 @@
 import time
 import matplotlib.pyplot as plt
 from time import gmtime, strftime
-from random import *
+from hp_random import *
 
 # MNIST and CIFAR-10
 
