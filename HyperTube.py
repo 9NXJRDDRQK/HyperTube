@@ -249,6 +249,7 @@ def model_update_sample(test_X, test_Y, model_list, HP_list, eva_list, eva_val_h
     
     prob_cross = HHP["prob_cross"]
     n_t_o = int (n_t * (1 - update_rate))
+    ind_0 = sorted(range(len(eva_list_adjusted)), key=lambda i: eva_list_adjusted[i])[:n_t]
     ind = sorted(range(len(eva_list_adjusted)), key=lambda i: eva_list_adjusted[i])[:n_t_o]
     print("model_update_sample:eva_list_adjusted", eva_list_adjusted)
     print("model_update_sample:eva_list_adjusted (ordered)", [eva_list_adjusted[i] for i in ind])
@@ -260,8 +261,10 @@ def model_update_sample(test_X, test_Y, model_list, HP_list, eva_list, eva_val_h
     # print("model_update_sample: model_list, HP_list", len(model_list), len(HP_list))
     # print("ind_0", ind)
     # HP_list_1 = copy.deepcopy(HP_list[ind])
+    HP_list_0 = [HP_list[i] for i in ind_0]
     HP_list_1 = [HP_list[i] for i in ind]
     # model_list_1 = copy.deepcopy(model_list[ind])
+    model_list_0 = [model_list[i] for i in ind_0]
     model_list_1 = [model_list[i] for i in ind]
     eva_list_1 =  [eva_list[i] for i in ind]
     ind_1 = []
@@ -330,20 +333,19 @@ def model_update_sample(test_X, test_Y, model_list, HP_list, eva_list, eva_val_h
             new_model.set_weights(model_list_1[inherit_list[i]].get_weights())
             model_list_1.append(new_model)
         HP_list_new = HP_list_1
-        model_list_new = model_list_1     
+        model_list_new = model_list_1
+        
     elif method == "BO" and n_t_o>0:   
         history = other_data
         HP_list_new, model_list_new, history = update_BO(test_X, test_Y, model_list, HP_list, eva_list, HHP, HPcv, n_t, other_data = history)
-        HP_list_new = HP_list_1
-        model_list_new = model_list_1
+    
     elif method == "predict" and n_t_o>0:
         history = other_data
         HP_list_new, model_list_new, history = update_predict(test_X, test_Y, model_list, HP_list, eva_list, HHP, HPcv, n_t, other_data = history)
-        HP_list_new = HP_list_1
-        model_list_new = model_list_1
+    
     else:
-        HP_list_new = HP_list
-        model_list_new = model_list
+        HP_list_new = HP_list_0
+        model_list_new = model_list_0
             
     return HP_list_new, model_list_new, history
 
