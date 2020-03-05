@@ -49,7 +49,7 @@ def LeNet_5(HP, input_shape):
     
     return model
 
-def LeNet_1(HP, input_shape):
+def LeNet_new(HP, input_shape):
     
     seed = HP["seed"]
     reg1 = HP["reg1"]
