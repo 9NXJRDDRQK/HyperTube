@@ -14,9 +14,6 @@ from keras.datasets import mnist
 from keras.datasets import cifar10
 from keras.datasets import cifar100
 from keras.datasets import fashion_mnist
-from keras.datasets import imdb
-from keras.datasets import reuters
-from keras.datasets import boston_housing
 
 from keras.utils import to_categorical
 from keras.models import Sequential
@@ -27,9 +24,9 @@ from keras.initializers import *
 
 import HyperTube
 from HyperTube import *
-import HyperTube_BO
+# import HyperTube_BO
 import HyperTube_GA
-import HyperTube_PR
+# import HyperTube_PR
 import Models_CNN 
 from Models_CNN import *
 
@@ -197,11 +194,3 @@ for i in range(10):
     fn2 = 'CNN_HP_HyperTube_'+dataset+ '_' + HHP["setting"] + '_1.csv'
     model_list, eva_val_min_list, eva_test_min_list, meva_val_list, meva_test_list, min_history_full, ave_history_full =  model_online_1(train_X, train_Y, val_X, val_Y, test_X, test_Y, HP, HHP, HPcv, HP_random, fn2, other_utils=None)  
     
-
-
-
-
-
-
-
-
