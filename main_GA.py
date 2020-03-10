@@ -14,9 +14,6 @@ from keras.datasets import mnist
 from keras.datasets import cifar10
 from keras.datasets import cifar100
 from keras.datasets import fashion_mnist
-from keras.datasets import imdb
-from keras.datasets import reuters
-from keras.datasets import boston_housing
 
 from keras.utils import to_categorical
 from keras.models import Sequential
@@ -27,9 +24,9 @@ from keras.initializers import *
 
 import HyperTube
 from HyperTube import *
-import HyperTube_BO
+# import HyperTube_BO
 import HyperTube_GA
-import HyperTube_PR
+# import HyperTube_PR
 import Models_CNN 
 from Models_CNN import *
 
